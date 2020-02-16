@@ -1,0 +1,34 @@
+.user-image {
+    position: relative;
+    height: 230px;
+    // margin-top: 130px;
+    // margin-bottom: 100px;
+    & .image-box {
+        position: absolute;
+        top: 20%;
+        right: 40%;
+        transition: all 0.65s;
+    }
+
+    & img {
+        // margin-top: 50px;
+        box-sizing: border-box;
+        width: 160px;
+        border-radius: 50%;
+        border: 1px solid grey;
+        padding: 5px;
+        background-color: white;
+        z-index: 10;
+    }
+    & .image-box:hover {
+        transform: rotateY(180deg);
+    }
+    & .line {
+        width: 100%;
+        height: 2px;
+        background-color: grey;
+        // position: absolute;
+        top: 50%;
+        // z-index: 0;
+    }
+}

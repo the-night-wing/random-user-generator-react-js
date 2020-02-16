@@ -1,0 +1,66 @@
+.user-hovers {
+    display: flex;
+    margin: 0 auto;
+    margin-top: 10px;
+    justify-content: center;
+    li {
+        list-style: none;
+        height: 48px;
+        width: 40px;
+        background-image: url("../../img/card_icons.png");
+        background-size: 378px;
+        -webkit-transition: background-position 0.1s ease-in;
+        -moz-transition: background-position 0.1s ease-in;
+        -o-transition: background-position 0.1s ease-in;
+        transition: background-position 0.1s ease-in;
+        cursor: pointer;
+        margin: 25px;
+        display: block;
+    }
+    & .name {
+        background-position: 0 -48px;
+        transition: background-position 0.1s ease-in;
+    }
+    // & .name.active:hover {
+    //     background-position: 0 -50px;
+    // }
+    & .name.active {
+        background-position: 0 -96px;
+        transition: background-position 0.1s ease-in;
+    }
+    & .email {
+        background-position: -68px -48px;
+        transition: background-position 0.1s ease-in;
+    }
+    & .email.active {
+        background-position: -68px -96px;
+        transition: background-position 0.1s ease-in;
+        // transform: translateY(-96px);
+    }
+    & .dob {
+        background-position: -135px -48px;
+        transition: background-position 0.1s ease-in;
+    }
+    & .dob.active {
+        background-position: -135px -96px;
+        transition: background-position 0.1s ease-in;
+    }
+    & .address {
+        background-position: -203px -48px;
+    }
+    & .address.active {
+        background-position: -203px -96px;
+    }
+    & .phone {
+        background-position: -270px -48px;
+    }
+    & .phone.active {
+        background-position: -270px -96px;
+    }
+    & .login {
+        background-position: -338px -48px;
+    }
+    & .login.active {
+        background-position: -338px -96px;
+    }
+}
