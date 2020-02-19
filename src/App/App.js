@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import "./App.css";
 
 import User from "../components/User/User";
+import { Header } from "../components/Header/Header";
 
 import { userAPI } from "../services/api/getUserData";
 
@@ -10,7 +11,11 @@ class App extends Component {
         // api: null,
         user: null,
         isLoaded: false,
-        hovereditem: 0
+        hovereditem: 0,
+        genderFilter: {
+            status: false,
+            type: "male"
+        }
     };
     // console.log(userData);
     // console.log(user);
@@ -21,8 +26,9 @@ class App extends Component {
         });
     };
 
-    componentDidMount() {
-        const api = new userAPI();
+    getUserData = () => {
+        const { genderFilter } = this.state;
+        const api = new userAPI(genderFilter);
         api.generateUserData().then(() => {
             console.log(api);
             this.setState({
@@ -30,6 +36,34 @@ class App extends Component {
                 isLoaded: true
             });
         });
+    };
+
+    onUpdateUserClick = () => {
+        this.getUserData();
+    };
+
+    onGenderFilterSwitch = type => {
+        console.log(type + "  ```type");
+        this.setState(state => {
+            console.log(state.genderFilter);
+            const genderFilter = { ...state.genderFilter };
+            genderFilter.type = type;
+            console.log(genderFilter);
+            return { genderFilter };
+        });
+    };
+    onGenderFilterEnable = () => {
+        this.setState(state => {
+            const genderFilter = { ...state.genderFilter };
+            console.log(state.genderFilter);
+            genderFilter.status = !genderFilter.status;
+            console.log(genderFilter);
+            return { genderFilter };
+        });
+    };
+
+    componentDidMount() {
+        this.getUserData();
     }
 
     render() {
@@ -56,7 +90,7 @@ class App extends Component {
             }
         ];
 
-        if (isLoaded) console.log(user);
+        // if (isLoaded) console.log(user);
         const body = isLoaded ? (
             <User
                 user={user}
@@ -71,12 +105,20 @@ class App extends Component {
                 onHover={this.onItemHover}
                 hovered={hovereditem}
                 hoverItems={hoverItems}
+                onUpdateUserClick={this.onUpdateUserClick}
+                onGenderPick={type => this.onGenderFilterSwitch(type)}
+                onGenderEnable={this.onGenderFilterEnable}
             />
         ) : (
             "loading"
         );
         const loading = "Loading...";
-        return <div className="App">{isLoaded ? body : loading}</div>;
+        return (
+            <div className="App">
+                <Header />
+                {isLoaded ? body : loading}
+            </div>
+        );
     }
 }
 

@@ -2,15 +2,21 @@
     font-family: Ubuntu, sans-serif;
     box-sizing: border-box;
     /* padding-top: 10px; */
-    padding: 100px 0;
+    padding: 50px 0;
     text-align: center;
     max-height: 100%;
-    background: rgb(63, 94, 251);
+    background: rgb(214, 214, 214);
+    background: radial-gradient(
+        circle,
+        rgba(214, 214, 214, 1) 0%,
+        rgba(136, 136, 136, 1) 100%
+    );
+    /* background: rgb(63, 94, 251);
     background: radial-gradient(
         circle,
         rgba(63, 94, 251, 1) 0%,
         rgba(135, 75, 87, 1) 100%
-    );
+    ); */
     /* background: rgb(2, 0, 36);
     background: linear-gradient(
         180deg,

@@ -1,0 +1,174 @@
+$radioSize: 22px;
+$radioBorder: #d1d7e3;
+$radioActive: #34d34e;
+
+// #cbx {
+//     display: none;
+// }
+
+.gender-filter {
+    width: 500px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    & .gender {
+        display: flex;
+        justify-content: center;
+    }
+
+    & .switch {
+        // width: 10px;
+        display: flex;
+        align-items: center;
+    }
+
+    & label {
+        cursor: pointer;
+        margin: 0 5px;
+    }
+
+    & .radio {
+        margin: 16px;
+        display: block;
+        cursor: pointer;
+        input {
+            display: none;
+            & + span {
+                line-height: $radioSize;
+                height: $radioSize;
+                padding-left: $radioSize;
+                display: block;
+                position: relative;
+                &:not(:empty) {
+                    padding-left: $radioSize + 8;
+                }
+                &:before,
+                &:after {
+                    content: "";
+                    width: $radioSize;
+                    height: $radioSize;
+                    display: block;
+                    border-radius: 50%;
+                    left: 0;
+                    top: 0;
+                    position: absolute;
+                }
+                &:before {
+                    background: $radioBorder;
+                    transition: background 0.2s ease,
+                        transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 2);
+                }
+                &:after {
+                    background: #fff;
+                    transform: scale(0.78);
+                    transition: transform 0.6s
+                        cubic-bezier(0.175, 0.885, 0.32, 1.4);
+                }
+            }
+            &:checked + span {
+                &:before {
+                    transform: scale(1.04);
+                    background: $radioActive;
+                }
+                &:after {
+                    transform: scale(0.4);
+                    transition: transform 0.3s ease;
+                }
+            }
+        }
+        &:hover {
+            input {
+                & + span {
+                    &:before {
+                        transform: scale(0.92);
+                    }
+                    &:after {
+                        transform: scale(0.74);
+                    }
+                }
+                &:checked + span {
+                    &:after {
+                        transform: scale(0.4);
+                    }
+                }
+            }
+        }
+    }
+
+    .toggle {
+        position: relative;
+        display: block;
+        // width: 150px;
+        width: 40px;
+        height: 20px;
+        cursor: pointer;
+        -webkit-tap-highlight-color: transparent;
+        transform: translate3d(0, 0, 0);
+        &:before {
+            content: "";
+            position: relative;
+            top: 3px;
+            left: 3px;
+            width: 34px;
+            height: 14px;
+            display: block;
+            background: #9a9999;
+            border-radius: 8px;
+            transition: background 0.2s ease;
+        }
+        & span {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 20px;
+            height: 20px;
+            display: block;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 3px 8px rgba(154, 153, 153, 0.5);
+            transition: all 0.2s ease;
+            &:before {
+                content: "";
+                position: absolute;
+                display: block;
+                margin: -18px;
+                width: 56px;
+                height: 56px;
+                background: rgba(79, 46, 220, 0.5);
+                border-radius: 50%;
+                transform: scale(0);
+                opacity: 1;
+                pointer-events: none;
+            }
+        }
+    }
+    #cbx {
+        &:checked {
+            + {
+                .toggle {
+                    &:before {
+                        background: #947ada;
+                    }
+                    span {
+                        background: #4f2edc;
+                        transform: translateX(20px);
+                        transition: all 0.2s cubic-bezier(0.8, 0.4, 0.3, 1.25),
+                            background 0.15s ease;
+                        box-shadow: 0 3px 8px rgba(79, 46, 220, 0.2);
+                        &:before {
+                            transform: scale(1);
+                            opacity: 0;
+                            transition: all 0.4s ease;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .center {
+        position: absolute;
+        top: calc(50% - 10px);
+        left: calc(50% - 20px);
+    }
+}

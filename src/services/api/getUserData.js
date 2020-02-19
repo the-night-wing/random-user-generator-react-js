@@ -1,13 +1,24 @@
 // let userData;
 
 class userAPI {
-    userData;
+    constructor(genderFilter) {
+        // super(props);
+        this.userData = undefined;
+        this.genderFilter = genderFilter;
+    }
+    // userData;
 
     makeAPICall = async () => {
-        const apiResult = await fetch("https://randomuser.me/api/");
+        const urlToFetch = `https://randomuser.me/api/${
+            this.genderFilter.status ? `?gender=${this.genderFilter.type}` : ""
+        }`;
+
+        const apiResult = await fetch(urlToFetch);
         // console.log("object");
         const userData = await apiResult.json();
         console.log(userData);
+
+        // console.log(arguments);
 
         return userData;
     };
