@@ -5,6 +5,7 @@ import { UserData } from "../UserData/UserData";
 import { UserHovers } from "../UserHovers/UserHovers";
 import { GenderFilter } from "../GenderFilter/GenderFilter";
 import { UpdateUser } from "../UpdateUser/UpdateUser";
+import { ExportUserData } from "../ExportUserData/ExportUserData";
 
 import "./User.scss";
 
@@ -34,6 +35,10 @@ export default class User extends Component {
                 <GenderFilter
                     onGenderPick={onGenderPick}
                     onGenderEnable={onGenderEnable}
+                />
+                <ExportUserData
+                    downloadImage={user.downloadUserImage}
+                    downloadData={user.downloadUserData}
                 />
             </div>
         );

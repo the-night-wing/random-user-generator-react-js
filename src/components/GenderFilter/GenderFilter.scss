@@ -7,14 +7,15 @@ $radioActive: #34d34e;
 // }
 
 .gender-filter {
-    width: 500px;
+    max-width: 600px;
     margin: 0 auto;
     display: flex;
     justify-content: space-around;
     align-items: center;
     & .gender {
+        width: 300px;
         display: flex;
-        justify-content: center;
+        justify-content: space-around;
     }
 
     & .switch {

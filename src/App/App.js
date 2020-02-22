@@ -3,6 +3,7 @@ import "./App.css";
 
 import User from "../components/User/User";
 import { Header } from "../components/Header/Header";
+import { LoadingSpinner } from "../components/LoadingSpinner/LoadingSpinner";
 
 import { userAPI } from "../services/api/getUserData";
 
@@ -91,7 +92,7 @@ class App extends Component {
         ];
 
         // if (isLoaded) console.log(user);
-        const body = isLoaded ? (
+        const userCard = isLoaded ? (
             <User
                 user={user}
                 items={[
@@ -110,16 +111,25 @@ class App extends Component {
                 onGenderEnable={this.onGenderFilterEnable}
             />
         ) : (
-            "loading"
+            <LoadingSpinner />
         );
-        const loading = "Loading...";
+        // const loading = <LoadingSpinner />;
         return (
             <div className="App">
                 <Header />
-                {isLoaded ? body : loading}
+                {userCard}
+                {/* {isLoaded ? body : loading} */}
             </div>
         );
     }
 }
+
+// TODO  Media queries
+// TODO  Routing for a group of people
+// TODO  Error handling  --- is for router
+// TODO  Exporting data and image           DONE
+// TODO  Password filter
+// TODO  nationality filter
+// https://medium.com/@NaveenDA/creating-a-custom-404-notfound-page-with-react-routers-56af9ad67807
 
 export default App;

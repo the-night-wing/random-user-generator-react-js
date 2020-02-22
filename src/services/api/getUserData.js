@@ -1,4 +1,4 @@
-// let userData;
+import FileSaver from "file-saver";
 
 class userAPI {
     constructor(genderFilter) {
@@ -23,12 +23,19 @@ class userAPI {
         return userData;
     };
 
+    downloadUserData = async () => {
+        // console.log(this.userData);
+        const jsonData = await JSON.stringify(this.userData);
+        const blob = new Blob([jsonData], { type: "text/plain;charset=utf-8" });
+        FileSaver.saveAs(blob, `${this.parseName(true)}.json`);
+    };
+
+    downloadUserImage = () => {
+        FileSaver.saveAs(this.parseImage(), "UserImage.jpg");
+    };
+
     generateUserData = async () => {
         const apiCall = await this.makeAPICall();
-        // apiCall.then(data => {
-        //     this.userData = data.results[0];
-        //     console.log(this.userData);
-        // });
         this.userData = apiCall.results[0];
         console.log(this.userData);
     };
@@ -41,9 +48,9 @@ class userAPI {
         return this.userData.email;
     };
 
-    parseName = () => {
+    parseName = (download = false) => {
         const nameObj = this.userData.name;
-        return nameObj.first + " " + nameObj.last;
+        return nameObj.first + `${download ? "_" : " "}` + nameObj.last;
     };
 
     parseBirthDate = () => {
@@ -53,7 +60,7 @@ class userAPI {
         return this.userData.phone;
     };
     parseImage = () => {
-        console.log(this.getUserData());
+        // console.log(this.getUserData());
         return this.userData.picture.large;
     };
     parseLogin = () => {

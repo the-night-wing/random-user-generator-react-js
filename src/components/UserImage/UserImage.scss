@@ -1,11 +1,11 @@
 .user-image {
     position: relative;
-    height: 230px;
+    height: 210px;
     // margin-top: 130px;
     // margin-bottom: 100px;
     & .image-box {
         position: absolute;
-        top: 20%;
+        top: 15%;
         right: 40%;
         transition: all 0.65s;
     }
