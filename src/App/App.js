@@ -40,7 +40,14 @@ class App extends Component {
     };
 
     onUpdateUserClick = () => {
-        this.getUserData();
+        this.setState(
+            {
+                isLoaded: false
+            }
+            // ,
+            // () => this.getUserData()
+        );
+        // this.getUserData()
     };
 
     onGenderFilterSwitch = type => {
