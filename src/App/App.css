@@ -11,19 +11,4 @@
         rgba(214, 214, 214, 1) 0%,
         rgba(136, 136, 136, 1) 100%
     );
-
-    /* background: rgb(63, 94, 251);
-    background: radial-gradient(
-        circle,
-        rgba(63, 94, 251, 1) 0%,
-        rgba(135, 75, 87, 1) 100%
-    ); */
-    /* background: rgb(2, 0, 36);
-    background: linear-gradient(
-        180deg,
-        rgba(2, 0, 36, 1) 0%,
-        rgba(58, 59, 61, 1) 0%,
-        rgba(59, 99, 185, 1) 100%
-    ); */
-    /* border: 1px solid black; */
 }

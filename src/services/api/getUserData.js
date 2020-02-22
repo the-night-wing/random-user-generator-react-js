@@ -12,11 +12,15 @@ class userAPI {
         const urlToFetch = `https://randomuser.me/api/${
             this.genderFilter.status ? `?gender=${this.genderFilter.type}` : ""
         }`;
-
-        const apiResult = await fetch(urlToFetch);
-        // console.log("object");
-        const userData = await apiResult.json();
-        console.log(userData);
+        let userData;
+        try {
+            const apiResult = await fetch(urlToFetch);
+            userData = await apiResult.json();
+            console.log(userData);
+        } catch (error) {
+            console.log(error);
+        }
+        console.log("object");
 
         // console.log(arguments);
 
@@ -36,7 +40,12 @@ class userAPI {
 
     generateUserData = async () => {
         const apiCall = await this.makeAPICall();
-        this.userData = apiCall.results[0];
+        if (typeof apiCall === "object") {
+            this.userData = apiCall.results[0];
+        }
+        // else {
+        // this.userData = [];
+        // }
         console.log(this.userData);
     };
 

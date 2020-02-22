@@ -32,11 +32,25 @@ class App extends Component {
         const api = new userAPI(genderFilter);
         api.generateUserData().then(() => {
             console.log(api);
+            this.setState(
+                {
+                    user: api
+                },
+                () => this.checkLoadedData()
+            );
+        });
+    };
+
+    checkLoadedData = () => {
+        const { user } = this.state;
+        console.log("Checking data");
+        console.log(user.data);
+        console.log(typeof user.data === "object");
+        if (typeof user.data === "object") {
             this.setState({
-                user: api,
                 isLoaded: true
             });
-        });
+        }
     };
 
     onUpdateUserClick = () => {
@@ -99,6 +113,7 @@ class App extends Component {
         ];
 
         // if (isLoaded) console.log(user);
+        console.log(isLoaded + " isLoaded");
         const userCard = isLoaded ? (
             <User
                 user={user}
