@@ -149,7 +149,7 @@ class App extends Component {
                 onGenderEnable={this.onGenderFilterEnable}
             />
         ) : errorOcured ? (
-            <ErrorPage />
+            <ErrorPage onUpdateUserClick={this.onUpdateUserClick} />
         ) : (
             <LoadingSpinner />
         );

@@ -4,12 +4,12 @@ import { UpdateUser } from "../UpdateUser/UpdateUser";
 
 import "./ErrorPage.scss";
 
-export const ErrorPage = () => {
+export const ErrorPage = ({ onUpdateUserClick }) => {
     return (
         <div className="error-page">
             <p>Ooops! Something went wrong</p>
             <p>Try to update:</p>
-            <UpdateUser />
+            <UpdateUser onUpdateUserClick={onUpdateUserClick} />
         </div>
     );
 };
