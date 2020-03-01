@@ -4,6 +4,7 @@ import "./App.css";
 import User from "../components/User/User";
 import { Header } from "../components/Header/Header";
 import { LoadingSpinner } from "../components/LoadingSpinner/LoadingSpinner";
+import { ErrorPage } from "../components/ErrorPage/ErrorPage";
 
 import { userAPI } from "../services/api/getUserData";
 
@@ -12,6 +13,7 @@ class App extends Component {
         // api: null,
         user: null,
         isLoaded: false,
+        errorOcured: false,
         hovereditem: 0,
         genderFilter: {
             status: false,
@@ -36,30 +38,44 @@ class App extends Component {
                 {
                     user: api
                 },
-                () => this.checkLoadedData()
+                () => {
+                    this.checkLoadedData();
+                    this.checkOnErrorData();
+                }
             );
         });
     };
 
     checkLoadedData = () => {
         const { user } = this.state;
-        console.log("Checking data");
-        console.log(user.data);
-        console.log(typeof user.data === "object");
-        if (typeof user.data === "object") {
+
+        if (typeof user.userData === "object") {
             this.setState({
                 isLoaded: true
             });
         }
     };
 
+    checkOnErrorData = () => {
+        const { user } = this.state;
+
+        if (user.userData === "Error") {
+            this.setState(
+                {
+                    errorOcured: true
+                },
+                () => console.log(this.state)
+            );
+        }
+    };
+
     onUpdateUserClick = () => {
         this.setState(
             {
-                isLoaded: false
-            }
-            // ,
-            // () => this.getUserData()
+                isLoaded: false,
+                errorOcured: false
+            },
+            () => this.getUserData()
         );
         // this.getUserData()
     };
@@ -89,7 +105,7 @@ class App extends Component {
     }
 
     render() {
-        const { user, isLoaded, hovereditem } = this.state;
+        const { user, isLoaded, errorOcured, hovereditem } = this.state;
 
         const hoverItems = [
             {
@@ -132,9 +148,12 @@ class App extends Component {
                 onGenderPick={type => this.onGenderFilterSwitch(type)}
                 onGenderEnable={this.onGenderFilterEnable}
             />
+        ) : errorOcured ? (
+            <ErrorPage />
         ) : (
             <LoadingSpinner />
         );
+        // const userCard = <ErrorPage />;
         // const loading = <LoadingSpinner />;
         return (
             <div className="App">
