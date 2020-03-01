@@ -12,17 +12,16 @@ class userAPI {
         const urlToFetch = `https://randomuser.me/api/${
             this.genderFilter.status ? `?gender=${this.genderFilter.type}` : ""
         }`;
-        let userData;
+        let userData = {};
         try {
             const apiResult = await fetch(urlToFetch);
-            userData = await apiResult.json();
+            userData = { ...(await apiResult.json()), isOk: true };
+
             console.log(userData);
         } catch (error) {
             console.log(error);
+            userData.isOk = false;
         }
-        console.log("object");
-
-        // console.log(arguments);
 
         return userData;
     };
@@ -40,13 +39,13 @@ class userAPI {
 
     generateUserData = async () => {
         const apiCall = await this.makeAPICall();
-        if (typeof apiCall === "object") {
+        if (apiCall.isOk) {
             this.userData = apiCall.results[0];
+        } else {
+            this.userData = "Error";
+            console.log("Error occured");
+            console.log(this.userData);
         }
-        // else {
-        // this.userData = [];
-        // }
-        console.log(this.userData);
     };
 
     getUserData = () => {

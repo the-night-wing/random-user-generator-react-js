@@ -8,9 +8,6 @@ export const UserData = ({ items, hovered }) => {
     return (
         <div className="user-data">
             {items.map((el, index) => {
-                // console.log(el);
-                // console.log(hovered);
-                // console.log(index);
                 return (
                     <div
                         key={uniqid()}
@@ -33,6 +30,8 @@ export const UserData = ({ items, hovered }) => {
                                         return "My phone number is:";
                                     case 5:
                                         return "My login data is:";
+                                    default:
+                                        return "My another info";
                                 }
                             })()}
                         </p>
